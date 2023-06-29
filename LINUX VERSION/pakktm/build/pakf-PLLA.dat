@@ -1,0 +1,111 @@
+C /1/ HEADING CARD (80A1)
+C PAKC
+
+C /2/ FORMAT FOR INPUT DATA (free format)
+C INDFOR
+    2
+C /3/ BASIC DATA (7I5)
+C        NP,NGET,NMATM,NDIN,NPER,PRINT,NKRT
+         8    1    1    0    1    0
+C /4/ BASIC DATA FOR THE PROBLEM
+C INTEB,INDSC,IFORM,MAXIT,EPSTA,  EPSTR,NJRAP
+    1    0    0  150  0.000000      0.05    2    1
+C /5/ DATA FOR RESTART (I5)
+C IREST
+    1
+C /6/ GROUP OF CARDS WITH DATA FOR TIME STEPS (I5,F10.0)
+    4  1.0
+C /7/ GROUP OF CARDS FOR NODAL POINT DATA (I5,1X,8I2,2X,3F10.6,3I2)
+C   N, (ID(N,I),I=1,8)  KORD(N,1),KORD(N,2),KORD(N,3),(ID(N,I),I=9,11)
+    1  1 1 0 1 1 1 1 1   0.0000E+0 0.0000E+0 1.0000E+0 1 1 1
+    2  1 1 1 1 1 1 1 1   0.0000E+0 0.0000E+0 0.0000E+0 1 1 1
+    3  1 0 0 1 1 1 1 1   0.0000E+0 1.0000E+0 1.0000E+0 1 1 1
+    4  1 0 1 1 1 1 1 1   0.0000E+0 1.0000E+0 0.0000E+0 1 1 1
+    5  0 1 0 1 1 1 1 1   1.0000E+0 0.0000E+0 1.0000E+0 1 1 1
+    6  0 1 1 1 1 1 1 1   1.0000E+0 0.0000E+0 0.0000E+0 1 1 1
+    7  0 0 0 1 1 1 1 1   1.0000E+0 1.0000E+0 1.0000E+0 1 1 1
+    8  0 0 1 1 1 1 1 1   1.0000E+0 1.0000E+0 0.0000E+0 1 1 1
+C /8/ ELEMENT GROUP DATA (7I5)
+C    NETIP,NET,INDAX,IATYP,NMODM,IPN,IPOROS (5I5)
+    3         1    0    0    5    8    0
+C /8-1/ DATA COMMON FOR ALL ELEMENTS
+C NMODEL, NMATER, NP2DMX, ISWELL (4I5)
+    1    1    8    0
+C /8-2/ card with nodal point data of the current element (5I5,num. material I5)
+C NN,   (NEL(NN,I),I=1,4)
+         1         1         3         4         2         5         7         8         6         1
+C /9/ NUMBER PRESCRIBED VALUES - NUMZAD (I5)
+         0
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C         5    2    1 1.00E+000
+C         6    2    1 1.00E+000
+C         7    2    1 1.00E+000
+C         8    2    1 1.00E+000
+C /10/ INITIAL VALUES (4F10.3)
+C      Qx0       Qy0       Qz0        p0
+     0.000     0.000     0.000     0.000
+C /11/ DATA ABOUT SURFACE BOUNDARY CONDITIONS (4I5)
+C  MAXSIL, INDPJ (2I5)
+         0    0
+C  El.  n1   n2        p1        p2 (3I5,2F10.3)
+C /12/ DATA ABOUT MATERIALS
+C /12-1/ NUMBER OF MATERIALS  (I5)
+    1
+C /12-1/ MATERIAL CONSTANTS FOR MATERIAL 1
+C /12-1/a MODEL,MATERIAL NUMBER, INDJOT  (3I5)
+    8    1    0
+C YOUNGS MODULUS, POISSONS RATIO,YIELD STRESS,MULTIPLAYER,EXPONENT, MIXED HARDENING COEFFICIENT (6F10.3)
+ 1.00e+004 0.00e-001 2.70e+002 1.800e+02 0.00e+000 0.00e+000
+C HS, POROSITY n,PERMEAB. k,BULK MOD. OF SOLID Ks,BULK MOD. OF FLUID Kf(6E10.3)
+ 0.00e+000 0.00e-000
+C Data for Material - PLLA  model - Experimenal curves 
+C    NTEMPPLL,NMAXCPLL,NPTMAXPLL,NTIMEFPLL,IPLASTIC19,NSTEPSPLLO,TEMPPLL (6I5,F10.2)
+    1    1    5    2    0    2    4   40.0000
+C   NN,NCC,TTT,GUSS,PR  (2I5,3D10.2)
+    1    1  25.       0.0        0.0
+C   II,NPTT,RATE (2I5,F10.2) 
+    1    5  0.001
+C   CURVEPLL(NN,II,K,1),CURVEPLL(NN,II,K,2)
+    0.0     0.0
+    0.1    100.
+    0.2    150.
+    0.3    300.
+    0.4    500.
+C   UNLOADING
+    3
+   0.2     0.0
+   0.3     100.
+   0.4     500.
+C /14/ DATA FOR TIME FUNCTIONS (2I5)
+C NTABFT,MAXTFT
+         2    3
+C /14-1/ TIME FUNCTIONS   (IBR=1,NTABFT)
+C a) data about function in a table form (2I5)
+C IBR,IMAX    (IMAX.LE.MAXTFT)
+         1    3
+C b) values for argument - function (2F10.0)
+C ((FN(I,IBR,J),I=1,2),J=1,IMAX)
+ 0.00e+000 0.00e-000
+ 2.00e+00  1.00e-000
+ 4.0       0.0
+         2    2
+C b) values for argument - function (2F10.0)
+C ((FN(I,IBR,J),I=1,2),J=1,IMAX)
+ 0.00E+000 1.00E+000
+10.00E+003 1.00E+000
+C /14/ FORCES
+C /14/NUMBER OF FORCES
+    8
+C Data about prescribed forces
+         5    1    1 0.50e+002
+         6    1    1 0.50e+002
+         7    1    1 0.50e+002
+         8    1    1 0.50e+002
+         3    2    1 0.50e+002
+         4    2    1 0.50e+002
+         7    2    1 0.50e+002
+         8    2    1 0.50e+002
+C
+C /16/ FINAL CARD (A4)
+0
+STOP
