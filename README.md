@@ -23,7 +23,7 @@ When using this software, please cite following papers:
 
 - R. Santagiuliana, M. Milosevic, B. Milicevic, G. Sciumè, V. Simic, A. Ziemys, M. Kojic, and B. A. Schrefler, “Coupling tumor growth and bio distribution models,” Biomedical Microdevices, vol. 21, no. 2. Springer Science and Business Media LLC, 25-Mar-2019. [https://doi.org/10.1007/s10544-019-0368-y]
 
-Below is description in Serbian.
+Below is the description in Serbian.
 
 Опис:
 PAK-KTM је софтвер високих перформанси за анализу методом коначних елемената (МКЕ), развијен на Универзитету у Крагујевцу и у Истраживачко-развојном центру за биоинжињеринг, БиоИРЦ, 
