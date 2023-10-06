@@ -7,7 +7,7 @@ The model incorporates the assumption that the transport of molecules can be des
 
 Another law employed is Darcy's law, which describes the transport of fluids in porous media through convection.
 When using this software, please cite following papers:
-M. Kojic, M. Milosevic, N. Kojic, Z. Starosolski, K. Ghaghada, R. Serda, A. Annapragada, M. Ferrari, and A. Ziemys, “A multi-scale FE model for convective–diffusive drug transport within tumor and large vascular networks,” Computer Methods in Applied Mechanics and Engineering, vol. 294. Elsevier BV, pp. 100–122, Sep-2015. [http://dx.doi.org/10.1016/j.cma.2015.06.002]
+- M. Kojic, M. Milosevic, N. Kojic, Z. Starosolski, K. Ghaghada, R. Serda, A. Annapragada, M. Ferrari, and A. Ziemys, “A multi-scale FE model for convective–diffusive drug transport within tumor and large vascular networks,” Computer Methods in Applied Mechanics and Engineering, vol. 294. Elsevier BV, pp. 100–122, Sep-2015. [http://dx.doi.org/10.1016/j.cma.2015.06.002]
 
 - M. Kojic, M. Milosevic, N. Kojic, E. J. Koay, J. B. Fleming, M. Ferrari, and A. Ziemys, “Mass release curves as the constitutive curves for modeling diffusive transport within biological tissue,” Computers in Biology and Medicine, vol. 92. Elsevier BV, pp. 156–167, Jan-2018. [https://doi.org/10.1016/j.compbiomed.2016.06.026]
 
