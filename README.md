@@ -13,7 +13,7 @@ When using this software, please cite following papers:
 
 - M. Kojic, M. Milosevic, V. Simic, E. J. Koay, J. B. Fleming, S. Nizzero, N. Kojic, A. Ziemys, and M. Ferrari, “A composite smeared finite element for mass transport in capillary systems and biological tissue,” Computer Methods in Applied Mechanics and Engineering, vol. 324. Elsevier BV, pp. 413–437, Sep-2017. [http://dx.doi.org/10.1016/j.cma.2017.06.019]
 
-- M. Kojić, M. Milošević, V. Simić, E. J. Koay, N. Kojić, A. Ziemys, and M. Ferrari, “EXTENSION OF THE COMPOSITE SMEARED FINITE ELEMENT (CSFE) TO INCLUDE LYMPHATIC SYSTEM IN MODELING MASS TRANSPORT IN CAPILLARY SYSTEMS AND BIOLOGICAL TISSUE,” Journal of the Serbian Society for Computational Mechanics, vol. 11, no. 2. Faculty of Engineering, University of Kragujevac, pp. 108–119, Dec-2017. [http://doi.org/doi: 10.24874/jsscm.2017.11.02.09]
+- M. Kojić, M. Milošević, V. Simić, E. J. Koay, N. Kojić, A. Ziemys, and M. Ferrari, “EXTENSION OF THE COMPOSITE SMEARED FINITE ELEMENT (CSFE) TO INCLUDE LYMPHATIC SYSTEM IN MODELING MASS TRANSPORT IN CAPILLARY SYSTEMS AND BIOLOGICAL TISSUE,” Journal of the Serbian Society for Computational Mechanics, vol. 11, no. 2. Faculty of Engineering, University of Kragujevac, pp. 108–119, Dec-2017. [http://doi.org/10.24874/jsscm.2017.11.02.09]
 
 - M. Milosevic, V. Simic, B. Milicevic, E. J. Koay, M. Ferrari, A. Ziemys, and M. Kojic, “Correction function for accuracy improvement of the Composite Smeared Finite Element for diffusive transport in biological tissue systems,” Computer Methods in Applied Mechanics and Engineering, vol. 338. Elsevier BV, pp. 97–116, Aug-2018.[https://doi.org/10.1016/j.cma.2018.04.012]
 
@@ -39,7 +39,7 @@ PAK-KTM је софтвер високих перформанси за анал�
 
 - M. Kojic, M. Milosevic, V. Simic, E. J. Koay, J. B. Fleming, S. Nizzero, N. Kojic, A. Ziemys, and M. Ferrari, “A composite smeared finite element for mass transport in capillary systems and biological tissue,” Computer Methods in Applied Mechanics and Engineering, vol. 324. Elsevier BV, pp. 413–437, Sep-2017. [http://dx.doi.org/10.1016/j.cma.2017.06.019]
 
-- M. Kojić, M. Milošević, V. Simić, E. J. Koay, N. Kojić, A. Ziemys, and M. Ferrari, “EXTENSION OF THE COMPOSITE SMEARED FINITE ELEMENT (CSFE) TO INCLUDE LYMPHATIC SYSTEM IN MODELING MASS TRANSPORT IN CAPILLARY SYSTEMS AND BIOLOGICAL TISSUE,” Journal of the Serbian Society for Computational Mechanics, vol. 11, no. 2. Faculty of Engineering, University of Kragujevac, pp. 108–119, Dec-2017. [http://doi.org/doi: 10.24874/jsscm.2017.11.02.09]
+- M. Kojić, M. Milošević, V. Simić, E. J. Koay, N. Kojić, A. Ziemys, and M. Ferrari, “EXTENSION OF THE COMPOSITE SMEARED FINITE ELEMENT (CSFE) TO INCLUDE LYMPHATIC SYSTEM IN MODELING MASS TRANSPORT IN CAPILLARY SYSTEMS AND BIOLOGICAL TISSUE,” Journal of the Serbian Society for Computational Mechanics, vol. 11, no. 2. Faculty of Engineering, University of Kragujevac, pp. 108–119, Dec-2017. [http://doi.org/10.24874/jsscm.2017.11.02.09]
 
 - M. Milosevic, V. Simic, B. Milicevic, E. J. Koay, M. Ferrari, A. Ziemys, and M. Kojic, “Correction function for accuracy improvement of the Composite Smeared Finite Element for diffusive transport in biological tissue systems,” Computer Methods in Applied Mechanics and Engineering, vol. 338. Elsevier BV, pp. 97–116, Aug-2018.[https://doi.org/10.1016/j.cma.2018.04.012]
 
