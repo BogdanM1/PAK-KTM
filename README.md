@@ -38,6 +38,7 @@ PAK-KTM је софтвер високих перформанси за анал�
 
 <img src="imgs/Diag2.jpg?raw=true" title="Којић транспорт елемент" width="300" />
 
+<br/>
 <img src="imgs/Diag3.png?raw=true" title="Конективни елементи" width="300" />
 
 <img src="imgs/results1.png?raw=true" title="Поређење smeared и детаљног модела" width="300" />
