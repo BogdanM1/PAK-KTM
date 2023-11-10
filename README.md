@@ -46,6 +46,9 @@ PAK-KTM је софтвер високих перформанси за анал�
 
 </p>
 
+https://docs.google.com/viewer?url=${[link_to_raw_pdf](https://github.com/BogdanM1/PAK-KTM/blob/master/ManualAndRequirements.pdf)https://github.com/BogdanM1/PAK-KTM/blob/master/ManualAndRequirements.pdf}
+
+
 
 
 
