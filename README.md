@@ -75,12 +75,13 @@ Once the project is succesfully built you can run pakktm by pressing the Start b
 
 **Manual Linux:** <br />
 Download code from github navigate to pakktm/build and run the following commands:<br />
-<p align="center">
+<p align="left">
 cmake .. <br />
 make <br />
 ./pakktm <br />
-The program will prompt you to type-in the input dat file. <br />
 </p>
+The program will prompt you to type-in the input dat file. <br />
+
 
 
 
