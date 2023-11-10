@@ -56,4 +56,3 @@ https://docs.google.com/viewer?url=https://github.com/BogdanM1/PAK-KTM/blob/mast
 
 
 
-
