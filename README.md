@@ -1,9 +1,13 @@
 # PAK-KTM
 Description:
-PAK-KTM is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
+PAK-KTM (Program for Structural Analysis - *Kojic Transport Model*) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
 The program is written in FORTRAN 77/90/95 and is capable of solving diffusion and convection fields, enabling the modeling of mass transport of ions or molecules.
 The fundamental laws utilized include Fick's law of diffusion, from which the mass balance equation is derived and translated into a form applicable in the finite element method. 
 The model incorporates the assumption that the transport of molecules can be described by a nonlinear, non-stationary diffusion process.
+
+ The software involves modeling systems for the analysis and assessment of convective-diffusive transport in complex systems such as tumors and organs consisting of a large number of capillaries and subdomains (capillary domain, lymphatic domain, tissue domain, cell domain, intercellular space domain, etc.). Determination of basic mass transport process variables such as velocities, pressure, or concentration is performed using the finite element method (FEM). 
+
+Modern medicine involves the application of the latest technologies for more efficient human treatment and predicting disease development, as well as predicting drug delivery within complex biological systems. As a result of numerical calculations using this method, significant information is obtained, along with a better understanding of transport processes occurring in the vascular system, organs, and intercellular space. Users of this technical solution can model complex tissue and organ systems in a very simple way, using distributed (**smeared**) fields, significantly facilitating the generation of complex systems and organs and further reducing costs for pre-clinical and clinical trials.
 
 Another law employed is Darcy's law, which describes the transport of fluids in porous media through convection.
 When using this software, please cite following papers:
