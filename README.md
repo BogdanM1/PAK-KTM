@@ -47,7 +47,35 @@ PAK-KTM је софтвер високих перформанси за анал�
 </p>
 
 
-https://docs.google.com/viewer?url=https://github.com/BogdanM1/PAK-KTM/blob/master/ManualAndRequirements.pdf
+Requirements:
+Windows:
+* VisualStudio >=2017
+* Intel® oneAPI Base Toolkit
+* Intel® Distribution for GDB*
+* Intel® oneAPI HPC Toolkit
+Linux:
+* GNU Fortran (GCC) 4.4.7 20120313
+* The C compiler GNU 4.4.7
+* MUMPS 5.0.2.
+* 
+Manual Windows:
+Download code from github and open visual studio. As start-up project set PAKKTM and build project.
+Once the project is succesfully built you can run pakktm by pressing the Start button as shown below.
+
+<p align="center">
+<img src="imgs/Manual1.png?raw=true" title="Ток података" width="300" />
+</p>
+
+<p align="center">
+<img src="imgs/Manual2.png?raw=true" title="Ток података" width="300" />
+</p>
+
+Manual Linux:
+Download code from github navigate to pakktm/build and run the following commands:
+cmake ..
+make
+./pakktm
+The program will prompt you to type-in the input dat file. 
 
 
 
