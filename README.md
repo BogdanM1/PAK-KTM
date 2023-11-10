@@ -49,14 +49,15 @@ PAK-KTM је софтвер високих перформанси за анал�
 
 **Requirements:** <br/>
 
-**Windows:** <br/>
+* **Windows:** <br/>
 * VisualStudio >=2017
 * Intel® oneAPI Base Toolkit
 * Intel® Distribution for GDB*
 * Intel® oneAPI HPC Toolkit
   <br/>
   <br/>
-**Linux:**<br/>
+  
+* **Linux:**<br/>
 * GNU Fortran (GCC) 4.4.7 20120313
 * The C compiler GNU 4.4.7
 * MUMPS 5.0.2.
