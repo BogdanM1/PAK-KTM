@@ -27,7 +27,7 @@ When using this software, please cite following papers:
 <p align="center">
 <img src="imgs/Diag1.png?raw=true" title="Ток података" width="300" />
 
-<img src="imgs/Diag2.jpg?raw=true" title="Којић транспорт елемент" width="300" />
+<img src="imgs/Diag2.png?raw=true" title="Којић транспорт елемент" width="300" />
 </p>
 <br/>
 <p align="center">
