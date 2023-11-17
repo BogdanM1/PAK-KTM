@@ -34,18 +34,18 @@ When using this software, please cite following papers:
 
 
 
-<figure align="center">
+<p align="center">
 <figcaption>Data flow</figcaption>
 <img src="imgs/Diag1.png?raw=true"  width="300" />
-</figure>
+</p>
 
- <figure align="center">
+ 
 <figcaption>Kojic transport element</figcaption>
 <img src="imgs/Diag22.PNG?raw=true"  width="300" />
-</figure>
 
 
- <figcaption align="center">Connective elements</figcaption>
+
+<figcaption align="center">Connective elements</figcaption>
 <img align="center" src="imgs/Diag3.png?raw=true" width="300" />
  
 
