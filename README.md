@@ -1,7 +1,7 @@
 <h1 align="center"> PAK-KTM</h1>
 
 <p align="justify">
- PAK-KTM (Program for Structural Analysis - *Kojic Transport Model*) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
+ PAK-KTM (Program for Structural Analysis - <strong>Kojic Transport Model</strong>) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
 The program is written in FORTRAN 77/90/95 and is capable of solving diffusion and convection fields, enabling the modeling of mass transport of ions or molecules.
 The fundamental laws utilized include Fick's law of diffusion, from which the mass balance equation is derived and translated into a form applicable in the finite element method. 
 The model incorporates the assumption that the transport of molecules can be described by a nonlinear, non-stationary diffusion process.
@@ -11,7 +11,7 @@ The model incorporates the assumption that the transport of molecules can be des
  The software involves modeling systems for the analysis and assessment of convective-diffusive transport in complex systems such as tumors and organs consisting of a large number of capillaries and subdomains (capillary domain, lymphatic domain, tissue domain, cell domain, intercellular space domain, etc.). Determination of basic mass transport process variables such as velocities, pressure, or concentration is performed using the finite element method (FEM). 
 </p>
 <p align="justify">
-Modern medicine involves the application of the latest technologies for more efficient human treatment and predicting disease development, as well as predicting drug delivery within complex biological systems. As a result of numerical calculations using this method, significant information is obtained, along with a better understanding of transport processes occurring in the vascular system, organs, and intercellular space. Users of this technical solution can model complex tissue and organ systems in a very simple way, using distributed (**smeared**) fields, significantly facilitating the generation of complex systems and organs and further reducing costs for pre-clinical and clinical trials.
+Modern medicine involves the application of the latest technologies for more efficient human treatment and predicting disease development, as well as predicting drug delivery within complex biological systems. As a result of numerical calculations using this method, significant information is obtained, along with a better understanding of transport processes occurring in the vascular system, organs, and intercellular space. Users of this technical solution can model complex tissue and organ systems in a very simple way, using distributed (<strong>smeared</strong>strong>) fields, significantly facilitating the generation of complex systems and organs and further reducing costs for pre-clinical and clinical trials.
 </p>
 
 Another law employed is Darcy's law, which describes the transport of fluids in porous media through convection.
@@ -115,7 +115,7 @@ The finite element model consists of 1D pipe FEs for larger vessels (7736 elemen
 
 
 <h3 align="center"> Pancreas model </h3>
-<p align="center">
+<p align="justify">
 The model geometry, including large vessels and tissue, was generated at the Bioengineering R&D Center BIORC in Serbia, according to imaging data from: E. J. Koay, MD Anderson Cancer Center, Houston.
 </p>
 
@@ -131,7 +131,7 @@ The model geometry, including large vessels and tissue, was generated at the Bio
 
 <h3 align="center"> PLGA </h3>
 
-<p align="center">
+<p align="justify">
  Two different computational models are generated in order to simulate a drug transport from PLGA1 and PLGA2 implants: (a) a detailed FE model with 1D radial elements and (b) a composite smeared finite element model with two different domains: fiber domain and surrounding domain. For the purpose of the detailed FE model, the network of fibers is reconstructed using indoor software from an SEM image of drug loaded PLGA fibers with dimensions 90 µm × 90 µm. By randomly duplicating and displacing the generated layer of 1D fibers into the longitudinal direction of the modeling domain, we can generate a mat of fibers within any implant. Further, assuming symmetric conditions, we can model just one half of the implant. It is also reasonable to adopt a homogenous distribution (or repetition) of one small domain of the fibers, through which we can model just one part of the implant. Thus, the dimensions of our FE models are: 80 µm × 90 µm × 90 µm. The 3D FE mesh (40 × 48 × 48 divisions) consists 64,512 nodes and 36,864 elements; while the number of radial 1D elements is around 7580. 
 </p>
 
@@ -150,7 +150,7 @@ The model geometry, including large vessels and tissue, was generated at the Bio
 <img src="imgs/examples_imgs/plga/3.jpg?raw=true" width="300" />
  </figure>
 
- **More details about examples can be found in the Examples directory.**
+<strong>More details about examples can be found in the Examples directory.</strong>
 
 
 
