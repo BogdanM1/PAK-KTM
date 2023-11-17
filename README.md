@@ -45,8 +45,8 @@ When using this software, please cite following papers:
 </figure>
 
  <figure align="center">
- <figcaption>Connective elements</figcaption>
-<img src="imgs/Diag3.png?raw=true" width="300" />
+ <figcaption align="center">Connective elements</figcaption>
+<img align="center" src="imgs/Diag3.png?raw=true" width="300" />
  </figure>
 
 
