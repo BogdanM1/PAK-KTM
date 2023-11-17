@@ -1,5 +1,8 @@
 <h1 align="center"> PAK-KTM</h1>
 
+<p align="center"> <figcaption>Data flow</figcaption></p>
+<p align="center"><img src="imgs/Diag1.png?raw=true"  width="300" /></p>
+
 <p align="justify">
  PAK-KTM (Program for Structural Analysis - <strong>Kojic Transport Model</strong>) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
 The program is written in FORTRAN 77/90/95 and is capable of solving diffusion and convection fields, enabling the modeling of mass transport of ions or molecules.
@@ -34,10 +37,8 @@ When using this software, please cite following papers:
 
 
 
-<p align="center">
-<figcaption>Data flow</figcaption>
- </p>
-<img src="imgs/Diag1.png?raw=true"  width="300" />
+<p align="center"> <figcaption>Data flow</figcaption></p>
+<p align="center"><img src="imgs/Diag1.png?raw=true"  width="300" /></p>
 
 
  
