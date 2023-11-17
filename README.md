@@ -44,10 +44,10 @@ When using this software, please cite following papers:
 <img src="imgs/Diag22.PNG?raw=true"  width="300" />
 </figure>
 
- <figure align="center">
+
  <figcaption align="center">Connective elements</figcaption>
 <img align="center" src="imgs/Diag3.png?raw=true" width="300" />
- </figure>
+ 
 
 
 
