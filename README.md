@@ -127,7 +127,7 @@ The model geometry, including large vessels and tissue, was generated at the Bio
 <p align="center">PLGA domain modeled using a smeared composite finite element or detailed model with the mesh of fibers.</p>
 <p align="center"><img src="imgs/examples_imgs/plga/2.jpg?raw=true"  width="300" /></p>
 
-<p align="center">PLGA implant—concentration field in the fibers, for the detailed and smeared model, for the diffusion of Span-80/RhB complex within the PLGA implant.</p>
+<p align="center" style="font-size: 14px; font-style: italic;">PLGA implant—concentration field in the fibers, for the detailed and smeared model, for the diffusion of Span-80/RhB complex within the PLGA implant.</p>
 <p align="center"><img src="imgs/examples_imgs/plga/3.jpg?raw=true" width="300" /></p>
 
 <strong>More details about examples can be found in the Examples directory.</strong>
