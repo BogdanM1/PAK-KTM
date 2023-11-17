@@ -1,8 +1,5 @@
 <h1 align="center"> PAK-KTM</h1>
 
-<p align="center"> <figcaption>Data flow</figcaption></p>
-<p align="center"><img src="imgs/Diag1.png?raw=true"  width="300" /></p>
-
 <p align="justify">
  PAK-KTM (Program for Structural Analysis - <strong>Kojic Transport Model</strong>) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
 The program is written in FORTRAN 77/90/95 and is capable of solving diffusion and convection fields, enabling the modeling of mass transport of ions or molecules.
@@ -37,18 +34,18 @@ When using this software, please cite following papers:
 
 
 
-<p align="center"> <figcaption>Data flow</figcaption></p>
+<p align="center"> Data flow</p>
 <p align="center"><img src="imgs/Diag1.png?raw=true"  width="300" /></p>
 
 
  
-<figcaption>Kojic transport element</figcaption>
-<img src="imgs/Diag22.PNG?raw=true"  width="300" />
+<p align="center"> Kojic transport element</p>
+<p align="center"><img src="imgs/Diag22.PNG?raw=true"  width="300" /></p>
 
 
 
-<figcaption align="center">Connective elements</figcaption>
-<img align="center" src="imgs/Diag3.png?raw=true" width="300" />
+<p align="center"> Connective elements</p>
+<p align="center"><img align="center" src="imgs/Diag3.png?raw=true" width="300" /></p>
  
 
 
@@ -73,13 +70,9 @@ When using this software, please cite following papers:
 Download code from github and open visual studio. As start-up project set PAKKTM and build project.
 Once the project is succesfully built you can run pakktm by pressing the Start button as shown below.
 
-<p align="center">
-<img src="imgs/Manual1.PNG?raw=true" width="300" />
-</p>
+<p align="center"><img src="imgs/Manual1.PNG?raw=true" width="300" /></p>
 
-<p align="center">
-<img src="imgs/Manual2.PNG?raw=true" width="300" />
-</p>
+<p align="center"><img src="imgs/Manual2.PNG?raw=true" width="300" /></p>
 
 <h2 align="center"> Manual (Linux) </h2>
 Download code from github navigate to pakktm/build and run the following commands:<br />
@@ -99,20 +92,15 @@ The finite element model consists of 1D pipe FEs for larger vessels (7736 elemen
 </p>
 
 
- <figure align="center">
-   <figcaption>Liver model: geometry, tumor domains and pressures within large vessels</figcaption> 
-<img src="imgs/examples_imgs/liver/1.jpg?raw=true"  width="300" />
- </figure>
+<p align="center">Liver model: geometry, tumor domains and pressures within large vessels</p> 
+<p align="center"><img src="imgs/examples_imgs/liver/1.jpg?raw=true"  width="300" /></p>
 
- <figure align="center">
-    <figcaption>Concentration field in liver with tumors (marked with dashed lines), dotted results in tissue domain and with full mesh in tumors, for times t =10, 20 and 50s.</figcaption>
-<img src="imgs/examples_imgs/liver/2.jpg?raw=true"  width="300" />
- </figure>
 
- <figure align="center">
-<figcaption>Pressure fields for two views: a) Full mesh; b) Clipped mesh; c) Dotted representation of results in tissue, and with full mesh in tumors.</figcaption>
-<img src="imgs/examples_imgs/liver/3.jpg?raw=true" width="300" />
- </figure>
+<p align="center">Concentration field in liver with tumors (marked with dashed lines), dotted results in tissue domain and with full mesh in tumors, for times t =10, 20 and 50s.</p>
+<p align="center"><img src="imgs/examples_imgs/liver/2.jpg?raw=true"  width="300" /></p>
+
+<p align="center">Pressure fields for two views: a) Full mesh; b) Clipped mesh; c) Dotted representation of results in tissue, and with full mesh in tumors.</p>
+<p align="center"><img src="imgs/examples_imgs/liver/3.jpg?raw=true" width="300" /></p>
 
 
 
@@ -121,15 +109,11 @@ The finite element model consists of 1D pipe FEs for larger vessels (7736 elemen
 The model geometry, including large vessels and tissue, was generated at the Bioengineering R&D Center BIORC in Serbia, according to imaging data from: E. J. Koay, MD Anderson Cancer Center, Houston.
 </p>
 
- <figure align="center">
-   <figcaption>Model of pancreas, with large vessels and finite elements on the surface. Color in blood vessels corresponds to pressures. </figcaption> 
-<img src="imgs/examples_imgs/pancreas/1.jpg?raw=true"  width="300" />
- </figure>
+<p align="center">Model of pancreas, with large vessels and finite elements on the surface. Color in blood vessels corresponds to pressures. </p> 
+<p align="center"><img src="imgs/examples_imgs/pancreas/1.jpg?raw=true"  width="300" /></p>
 
- <figure align="center">
-    <figcaption>Concentration field within elements CSFE at the pancreas surface, for five selected time points. Maximum concentration, among the shown five time points, at each domain at t=20s when concentration Cin reaches maximum</figcaption>
-<img src="imgs/examples_imgs/pancreas/2.jpg?raw=true"  width="300" />
- </figure>
+<p align="center">Concentration field within elements CSFE at the pancreas surface, for five selected time points. Maximum concentration, among the shown five time points, at each domain at t=20s when concentration Cin reaches maximum</p>
+<p align="center"><img src="imgs/examples_imgs/pancreas/2.jpg?raw=true"  width="300" /></p>
 
 <h3 align="center"> PLGA </h3>
 
@@ -137,20 +121,14 @@ The model geometry, including large vessels and tissue, was generated at the Bio
  Two different computational models are generated in order to simulate a drug transport from PLGA1 and PLGA2 implants: (a) a detailed FE model with 1D radial elements and (b) a composite smeared finite element model with two different domains: fiber domain and surrounding domain. For the purpose of the detailed FE model, the network of fibers is reconstructed using indoor software from an SEM image of drug loaded PLGA fibers with dimensions 90 µm × 90 µm. By randomly duplicating and displacing the generated layer of 1D fibers into the longitudinal direction of the modeling domain, we can generate a mat of fibers within any implant. Further, assuming symmetric conditions, we can model just one half of the implant. It is also reasonable to adopt a homogenous distribution (or repetition) of one small domain of the fibers, through which we can model just one part of the implant. Thus, the dimensions of our FE models are: 80 µm × 90 µm × 90 µm. The 3D FE mesh (40 × 48 × 48 divisions) consists 64,512 nodes and 36,864 elements; while the number of radial 1D elements is around 7580. 
 </p>
 
- <figure align="center">
-   <figcaption>FE model of PLGA implant. a) The 3D domain  used in the model, with symmetry plane; b) Generated FE model using a SEM imaging sample.</figcaption> 
-<img src="imgs/examples_imgs/plga/1.jpg?raw=true"  width="300" />
- </figure>
+<p align="center">FE model of PLGA implant. a) The 3D domain  used in the model, with symmetry plane; b) Generated FE model using a SEM imaging sample.</p> 
+<p align="center"><img src="imgs/examples_imgs/plga/1.jpg?raw=true"  width="300" /></p>
 
- <figure align="center">
-    <figcaption>PLGA domain modeled using a smeared composite finite element or detailed model with the mesh of fibers.</figcaption>
-<img src="imgs/examples_imgs/plga/2.jpg?raw=true"  width="300" />
- </figure>
+<p align="center">PLGA domain modeled using a smeared composite finite element or detailed model with the mesh of fibers.</p>
+<p align="center"><img src="imgs/examples_imgs/plga/2.jpg?raw=true"  width="300" /></p>
 
- <figure align="center">
-<figcaption>PLGA implant—concentration field in the fibers, for the detailed and smeared model, for the diffusion of Span-80/RhB complex within the PLGA implant.</figcaption>
-<img src="imgs/examples_imgs/plga/3.jpg?raw=true" width="300" />
- </figure>
+<p align="center">PLGA implant—concentration field in the fibers, for the detailed and smeared model, for the diffusion of Span-80/RhB complex within the PLGA implant.</p>
+<p align="center"><img src="imgs/examples_imgs/plga/3.jpg?raw=true" width="300" /></p>
 
 <strong>More details about examples can be found in the Examples directory.</strong>
 
