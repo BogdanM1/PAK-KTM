@@ -36,8 +36,9 @@ When using this software, please cite following papers:
 
 <p align="center">
 <figcaption>Data flow</figcaption>
+ </p>
 <img src="imgs/Diag1.png?raw=true"  width="300" />
-</p>
+
 
  
 <figcaption>Kojic transport element</figcaption>
