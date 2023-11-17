@@ -1,6 +1,7 @@
-# PAK-KTM
-Description:
-PAK-KTM (Program for Structural Analysis - *Kojic Transport Model*) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
+<h1 align="center"> PAK-KTM</h1>
+
+<p align="justify">
+ PAK-KTM (Program for Structural Analysis - *Kojic Transport Model*) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
 The program is written in FORTRAN 77/90/95 and is capable of solving diffusion and convection fields, enabling the modeling of mass transport of ions or molecules.
 The fundamental laws utilized include Fick's law of diffusion, from which the mass balance equation is derived and translated into a form applicable in the finite element method. 
 The model incorporates the assumption that the transport of molecules can be described by a nonlinear, non-stationary diffusion process.
@@ -8,6 +9,7 @@ The model incorporates the assumption that the transport of molecules can be des
  The software involves modeling systems for the analysis and assessment of convective-diffusive transport in complex systems such as tumors and organs consisting of a large number of capillaries and subdomains (capillary domain, lymphatic domain, tissue domain, cell domain, intercellular space domain, etc.). Determination of basic mass transport process variables such as velocities, pressure, or concentration is performed using the finite element method (FEM). 
 
 Modern medicine involves the application of the latest technologies for more efficient human treatment and predicting disease development, as well as predicting drug delivery within complex biological systems. As a result of numerical calculations using this method, significant information is obtained, along with a better understanding of transport processes occurring in the vascular system, organs, and intercellular space. Users of this technical solution can model complex tissue and organ systems in a very simple way, using distributed (**smeared**) fields, significantly facilitating the generation of complex systems and organs and further reducing costs for pre-clinical and clinical trials.
+</p>
 
 Another law employed is Darcy's law, which describes the transport of fluids in porous media through convection.
 When using this software, please cite following papers:
@@ -29,20 +31,25 @@ When using this software, please cite following papers:
 
 
 <p align="center">
-<img src="imgs/Diag1.png?raw=true" title="Ток података" width="300" />
+ <figure>
+<img src="imgs/Diag1.png?raw=true"  width="300" />
+  <figcaption>Data flow</figcaption>
+ </figure>
 
-<img src="imgs/Diag22.PNG?raw=true" title="Којић транспорт елемент" width="300" />
+ <figure>
+<img src="imgs/Diag22.PNG?raw=true"  width="300" />
+  <figcaption>Kojic transport element</figcaption>
+ </figure>
+
+ <figure>
+<img src="imgs/Diag3.png?raw=true" width="300" />
+  <figcaption>Connective elements</figcaption>
+ </figure>
+
 </p>
-<br/>
-<p align="center">
-<img src="imgs/Diag3.png?raw=true" title="Конективни елементи" width="300" />
-
-<img src="imgs/results1.png?raw=true" title="Поређење smeared и детаљног модела" width="300" />
-
-</p>
 
 
-**Requirements:** <br/>
+<h2 align="center"> Requirements</h2>
 
 * **Windows:** <br/>
 * VisualStudio >=2017
@@ -57,19 +64,19 @@ When using this software, please cite following papers:
 * The C compiler GNU 4.4.7
 * MUMPS 5.0.2.
 
-**Manual Windows:** <br />
+<h2 align="center"> Manual (Windows) </h2>
 Download code from github and open visual studio. As start-up project set PAKKTM and build project.
 Once the project is succesfully built you can run pakktm by pressing the Start button as shown below.
 
 <p align="center">
-<img src="imgs/Manual1.PNG?raw=true" title="Ток података" width="300" />
+<img src="imgs/Manual1.PNG?raw=true" width="300" />
 </p>
 
 <p align="center">
-<img src="imgs/Manual2.PNG?raw=true" title="Ток података" width="300" />
+<img src="imgs/Manual2.PNG?raw=true" width="300" />
 </p>
 
-**Manual Linux:** <br />
+<h2 align="center"> Manual (Linux) </h2>
 Download code from github navigate to pakktm/build and run the following commands:<br />
 <p align="left">
 cmake .. <br />
@@ -77,6 +84,38 @@ make <br />
 ./pakktm <br />
 </p>
 The program will prompt you to type-in the input dat file. <br />
+
+<h2 align="center"> Examples </h2>
+
+<h3 align="center"> Mouse liver model </h3>
+
+<p align="justify">
+The finite element model consists of 1D pipe FEs for larger vessels (7736 elements), 3D composite smeared elements (39832 elements), and connectivity elements (726 elements) for connecting large vessels with continuum nodes (capillary domain DOF) of smeared FEs. There are two separate tumors within liver, with a total of 316 elements. The total number of nodes is 54590.
+</p>
+
+<p align="center">
+ <figure>
+<img src="imgs/examples_imgs/liver/1.jpg?raw=true"  width="300" />
+  <figcaption>Liver model: geometry, tumor domains and pressures within large vessels</figcaption>
+ </figure>
+
+ <figure>
+<img src="imgs/examples_imgs/liver/2.jpg?raw=true"  width="300" />
+  <figcaption>Concentration field in liver with tumors (marked with dashed lines), dotted results in tissue domain and with full mesh in tumors, for times t =10, 20 and 50s.</figcaption>
+ </figure>
+
+ <figure>
+<img src="imgs/examples_imgs/liver/3.jpg?raw=true" width="300" />
+  <figcaption>Pressure fields for two views: a) Full mesh; b) Clipped mesh; c) Dotted representation of results in tissue, and with full mesh in tumors.</figcaption>
+ </figure>
+
+</p>
+
+
+<h3 align="center"> Pancreas model </h3>
+
+
+<h3 align="center"> PLGA </h3>
 
 
 
