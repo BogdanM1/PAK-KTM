@@ -66,7 +66,11 @@ When using this software, please cite the aforementioned book or the following p
 * The C compiler GNU 4.4.7
 * MUMPS 5.0.2.
 
-<h2 align="center"> Manual (Windows) </h2>
+<h2 align="center"> Manual and requirements can be viewed [HERE](https://your-link-url.com](https://github.com/BogdanM1/PAK-KTM/blob/master/ManualAndRequirements.pdf). The file contains instructions on how to compile and run the PAKKTM, details about input file and also output files along with visualization instructions.
+</h2>
+  
+
+<h2 align="center"> PAKKTM building and runing  (Windows) </h2>
 Download code from github and open visual studio. As start-up project set PAKKTM and build project.
 Once the project is succesfully built you can run pakktm by pressing the Start button as shown below.
 
@@ -74,7 +78,7 @@ Once the project is succesfully built you can run pakktm by pressing the Start b
 
 <p align="center"><img src="imgs/Manual2.PNG?raw=true" width="300" /></p>
 
-<h2 align="center"> Manual (Linux) </h2>
+<h2 align="center"> PAKKTM building and runing (Linux) </h2>
 Download code from github navigate to pakktm/build and run the following commands:<br />
 <p align="left">
 cmake .. <br />
