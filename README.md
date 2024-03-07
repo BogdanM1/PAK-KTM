@@ -66,8 +66,8 @@ When using this software, please cite the aforementioned book or the following p
 * The C compiler GNU 4.4.7
 * MUMPS 5.0.2.
 
-<h3 align="left"> Manual and requirements can be viewed [HERE](https://your-link-url.com](https://github.com/BogdanM1/PAK-KTM/blob/master/ManualAndRequirements.pdf). The file contains instructions on how to compile and run the PAKKTM, details about input file and also output files along with visualization instructions.
-</h3>
+### Manual and requirements can be viewed [HERE](https://github.com/BogdanM1/PAK-KTM/blob/master/ManualAndRequirements.pdf). The file contains instructions on how to compile and run PAKKTM, details about the input file, and also output files along with visualization instructions.
+
   
 
 <h2 align="center"> PAKKTM building and runing  (Windows) </h2>
