@@ -1,0 +1,1141 @@
+1
+
+
+
+
+
+
+
+
+                            FINITE ELEMENT PROGRAM
+                   FOR LINEAR AND NONLINEAR ANALYSIS OF FIELD PROBLEMS
+                            KOJIC TRANSPORT MODEL
+
+
+
+
+
+
+
+
+
+
+
+
+
+         PPPPPPPPP      AAAA     KK      KK  KK      KK  TTTTTTTTTT MM          MM
+         PPPPPPPPPP    AAAAAA    KK     KK   KK     KK   TTTTTTTTTT MMM        MMM
+         PP      PP   AA    AA   KK    KK    KK    KK       TT      MMMM      MMMM
+         PP      PP  AA      AA  KK   KK     KK   KK        TT      MM MM   MM  MM
+         PPPPPPPPPP  AA      AA  KK  KK      KK  KK         TT      MM  MM MM   MM
+         PPPPPPPPP   AA      AA  KKKKK       KKKKK          TT      MM   MMM    MM
+         PP          AAAAAAAAAA  KKKKKKK     KKKKKKK        TT      MM    M     MM
+         PP          AAAAAAAAAA  KK    KK    KK    KK       TT      MM          MM
+         PP          AA      AA  KK     KK   KK     KK      TT      MM          MM
+         PP          AA      AA  KK      KK  KK      KK     TT      MM          MM
+
+
+
+
+
+
+     ---------------------------  VERSION  1.00  ---------------------------
+
+           READING DATA OPTION ............. INDFOR =    2
+                EQ.0; INDFOR = 1
+                EQ.1; FREE FORMAT
+                EQ.2; IN SPECIFIED FORMAT
+           DIFFUSION FLAG (0-NO, 1 WITH DIFFUSION)......INDIFFUS=    1
+           SOLVER FLAG (0-SKYLINE,1-MUMUMPS)..... ......ISOLVER =    1
+           DARCY MODEL FLAG.............................IDARCY  =    1
+                 0 - NOT A DARCY MODEL, SET TO 1 IN THIS CODE
+                 1 - DARCY PROBLEM SOLUTION
+                -1 - EQUIVALENT DARCY COEFFICIENT CALCULATION
+                -2 - EQUIVALENT DIFFUSION COEFFICINET CALCULATION
+
+
+
+1
+ A   C A R D   I M A G E   L I S T I N G   O F   T H E   I N P U T   D A T A
+                            C O L U M N   N U M B E R
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+ ---- ----------------------------------------------------------------------
+    1 C /1/ HEADING CARD (80A1)                                             
+    2 C NASLOV                                                              
+    3  COMPOSITE SMEARED FINITE ELEMENT MODEL - KOJIC TRANSPORT MODEL (KTM) 
+    4 C /3/ BASIC DATA FOR THE PROBLEM (I10,9I5)                            
+    5 C NPT,NGET,NMATC,NMATD,NSTAC,NPER,NPRINT,IANIZ,NULAZ,IGRAF,IDARCY,ICON
+    6         11    1    0    1    1    1   -1    0    1    1    1    0    1
+    7 C ISMEARED,IPARTSME,IPART,IVSOURCE,IRAVCOEF,DRAVCOEF,BVELCAP,I2D3D,IAN
+    8     5    0    0    0    01.000e+000    0    2    0    1    1    1    0
+    9 C /4/ BASIC DATA FOR THE PROBLEM                                      
+   10 C INTEB,INDSC,IFORM,MAXIT,EPSTA,EPSTR,NJRAP,EPSTRL,IDISJCALC,IDISJMESH
+   11     0    0    0   30  0.000000  0.050000    2  0.001000    0    0    1
+   12 C /5/ DATA FOR RESTART                                                
+   13 C IREST,NCZK,NCZR,VREM0,NPTPR (3I5,D15.8,I5)                          
+   14     1    0    0                                                       
+   15 C /6/ DATA FOR TIME STEPS (2I5,F10.0)                                 
+   16 C   NKDT(I)/DTDT(I)    (I=1,NPER)                                     
+   17          2                                                            
+   18 1.000e+000                                                            
+   19 C  CAPILLARY DIAMETERS DIACAPX,DIACAPY,DIACAPZ                        
+   20 1.000e+0001.000e+0001.000e+000                                        
+   21 C  DATA ABOUT MATERIAL DATA MATRICES                                  
+   22 C  FOR ICONV.EQ.1 -ICMTABLE(MM,I),I=1,6 (10I5) 0-NOT USED 1-CONSTANT, 
+   23 C  IMIGTABLE(I),I=1,10),(VMIGC(I),I=1,10) (10I3,10F10.2)              
+   24   0  0  0  0  0  0  0  0  0  01.000e+000                              
+   25 C   FLAGS FOR CHEMOTAXIS INDCHTAX,(INDCHTAXV(I),I=1,10) (11I3)        
+   26   0  0  0  0  0  0  0  0  0  0  0                                     
+   27 C MOLECULE NUMBER:                                                    
+   28     1                                                                 
+   29 C  K1,K2,K3,DPIPE,DEXT,(DIFF TENSOR (I),I=1,6)(3I5,12F10.2)  MOLECULE 
+   30     1    1    11.000e+0021.000e+0021.000e+0021.000e+002               
+   31 C  CELL DIFF COEFICIENTS: FLAGS (KV(I),I=1,10),COEFFICIENTS (1-10) (10
+   32   1  0  0  0  0  0  0  0  0  01.000e+002                              
+   33 C  PARTITIONING COEFFICIENTS - PIPE, CAPILLARY, CELLS (1-10)/VALUES (1
+   34   0  0  0  0  0  0  0  0  0  0  0  0                                  
+   35 1.000e+0001.000e+0001.000e+000                                        
+   36 C ACTIVE TRANSPORT COEFFICIENTS FOR CELLS: FLAGS, OUTLET VALUES/INLET 
+   37   0  0  0  0  0  0  0  0  0  01.000e+000                              
+   38 1.000e+000                                                            
+   39 C SOURCE TERMS FOR CELLS  1-10, VALUES 1-10 (10I3,10F10.2)            
+   40   0  0  0  0  0  0  0  0  0  01.000e+000                              
+   41 C ADHISION AND DE-ADHISION COEFFICIENTS  PIPE,CAPILL,CELLS (KV(I),I=1,
+   42   0  0  0  0  0  0  0  0  0  0  0  0                                  
+   43 1.000e+0001.000e+0001.000e+000                                        
+   44 1.000e+000                                                            
+   45 C   (KV(I),I=1,12/DWPIPE,DWCAP,DWCELL(1-10) (12I3/12F10.2)            
+   46   0  1  1  0  0  0  0  0  0  0  0  0                                  
+   47 1.000e+0021.000e+0041.000e+002                                        
+   48 C                                                                     
+   49 C    CRITICAL VALUES FOR CELLS: FLAGS, CRITICAL VALUES (4I5,4E15.3)   
+   50     1                                                                 
+ ---- ----------------------------------------------------------------------
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+                            C O L U M N   N U M B E R
+
+
+
+1
+ A   C A R D   I M A G E   L I S T I N G   O F   T H E   I N P U T   D A T A
+                            C O L U M N   N U M B E R
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+ ---- ----------------------------------------------------------------------
+   51   0  0  0  0  0  0  0  0  0  01.000e+000                              
+   52 C    MOLECULAR WEIGHTS (10(I3,F10.2))                                 
+   53   11.000e+000                                                         
+   54 C /7/ DATA FOR NODAL POINT DATA (I10,I5,5X,4e15.6,I5)                 
+   55 C     N,(IDTLOC(J),J=1,4),(CORD(N,J),J=1,3),IPIPENOD,FLAGS FOR DIFFUSI
+   56 C     CAPIL VOL FRACT  CAPIL DIAM  CAP WALL THICK  NODAL VOLUME    NOD
+   57 C     DARCY TENSOR (MAX 6 COMPONENTS), (7X,8E15.6)                    
+   58 C     VOL FRACTIONS/CELL DIAMETERS (1-NDIMCELL)  ((20X,8F10.2) INPUT W
+   59 C     FLAGS FOR  MIGRATION VELOCITIES, VELOCITIES I10,3I5,4F10.3) INPU
+   60 C     DIFFUSION DATA FOR EACH MOLECULE: - MOLECULE NO (I5)   NOT READ 
+   61 C        DIFF COEFF PIPE AND EXTRACELL       DIFFUSION TENSOR (15X,8F1
+   62 C        DIFF COEFFICENTS WITHIN CELLS (15X,8F10.2)                   
+   63 C        INDICATOR  COEFFICIENTS: PARTITIONING/ACTIVE/SOURCE/ADHESION 
+   64 C        DWALLCAP-ISMEARED=1   DIFF WALL PIPE AND CELL MEMRANES  (15X,
+   65 C    NODE     1                                                       
+   66          1    1    0    1    0  0.000000e+000  2.000000e+000  0.000000
+   67 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+   68          1.000000e-002  1.000000e-001  1.000000e-002  1.555556e+000  0
+   69 C   CELL FRACTIONS                                                    
+   70       1.000e-002                                                      
+   71 C   CELL DIAMETERS                                                    
+   72       1.000e+000                                                      
+   73 C        MOLECULE  1                                                  
+   74           1                                                           
+   75 C    NODE     2                                                       
+   76          2    1    0    1    0  0.000000e+000 -2.000000e+000  0.000000
+   77 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+   78          1.000000e-002  1.000000e-001  1.000000e-002  7.777778e-001  0
+   79 C   CELL FRACTIONS                                                    
+   80       1.000e-002                                                      
+   81 C   CELL DIAMETERS                                                    
+   82       1.000e+000                                                      
+   83 C        MOLECULE  1                                                  
+   84           1                                                           
+   85 C    NODE     3                                                       
+   86          3    1    0    1    0  4.000000e+000 -2.000000e+000  0.000000
+   87 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+   88          1.000000e-002  1.000000e-001  1.000000e-002  1.555556e+000  0
+   89 C   CELL FRACTIONS                                                    
+   90       1.000e-002                                                      
+   91 C   CELL DIAMETERS                                                    
+   92       1.000e+000                                                      
+   93 C        MOLECULE  1                                                  
+   94           1                                                           
+   95 C    NODE     4                                                       
+   96          4    1    0    1    0  4.000000e+000  2.000000e+000  0.000000
+   97 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+   98          1.000000e-002  1.000000e-001  1.000000e-002  7.777778e-001  0
+   99 C   CELL FRACTIONS                                                    
+  100       1.000e-002                                                      
+ ---- ----------------------------------------------------------------------
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+                            C O L U M N   N U M B E R
+
+
+
+1
+ A   C A R D   I M A G E   L I S T I N G   O F   T H E   I N P U T   D A T A
+                            C O L U M N   N U M B E R
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+ ---- ----------------------------------------------------------------------
+  101 C   CELL DIAMETERS                                                    
+  102       1.000e+000                                                      
+  103 C        MOLECULE  1                                                  
+  104           1                                                           
+  105 C    NODE     5                                                       
+  106          5    1    0    1    0  0.000000e+000  0.000000e+000  0.000000
+  107 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+  108          1.000000e-002  1.000000e-001  1.000000e-002  1.333333e+000  0
+  109 C   CELL FRACTIONS                                                    
+  110       1.000e-002                                                      
+  111 C   CELL DIAMETERS                                                    
+  112       1.000e+000                                                      
+  113 C        MOLECULE  1                                                  
+  114           1                                                           
+  115 C    NODE     6                                                       
+  116          6    0    0    0    0  2.000000e+000 -2.000000e+000  0.000000
+  117 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+  118          1.000000e-002  1.000000e-001  1.000000e-002  1.333333e+000  0
+  119 C   CELL FRACTIONS                                                    
+  120       1.000e-002                                                      
+  121 C   CELL DIAMETERS                                                    
+  122       1.000e+000                                                      
+  123 C        MOLECULE  1                                                  
+  124           1                                                           
+  125 C    NODE     7                                                       
+  126          7    0    0    0    0  2.000000e+000  0.000000e+000  0.000000
+  127 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+  128          1.000000e-002  1.000000e-001  1.000000e-002  2.666667e+000  0
+  129 C   CELL FRACTIONS                                                    
+  130       1.000e-002                                                      
+  131 C   CELL DIAMETERS                                                    
+  132       1.000e+000                                                      
+  133 C        MOLECULE  1                                                  
+  134           1                                                           
+  135 C    NODE     8                                                       
+  136          8    1    0    1    0  4.000000e+000  0.000000e+000  0.000000
+  137 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+  138          1.000000e-002  1.000000e-001  1.000000e-002  1.333333e+000  0
+  139 C   CELL FRACTIONS                                                    
+  140       1.000e-002                                                      
+  141 C   CELL DIAMETERS                                                    
+  142       1.000e+000                                                      
+  143 C        MOLECULE  1                                                  
+  144           1                                                           
+  145 C    NODE     9                                                       
+  146          9    0    0    0    0  2.000000e+000  2.000000e+000  0.000000
+  147 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+  148          1.000000e-002  1.000000e-001  1.000000e-002  1.333333e+000  0
+  149 C   CELL FRACTIONS                                                    
+  150       1.000e-002                                                      
+ ---- ----------------------------------------------------------------------
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+                            C O L U M N   N U M B E R
+
+
+
+1
+ A   C A R D   I M A G E   L I S T I N G   O F   T H E   I N P U T   D A T A
+                            C O L U M N   N U M B E R
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+ ---- ----------------------------------------------------------------------
+  151 C   CELL DIAMETERS                                                    
+  152       1.000e+000                                                      
+  153 C        MOLECULE  1                                                  
+  154           1                                                           
+  155 C    NODE    10                                                       
+  156         10    0    0    0    0  1.333333e+000 -6.666667e-001  0.000000
+  157 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+  158          1.000000e-002  1.000000e-001  1.000000e-002  1.666667e+000  0
+  159 C   CELL FRACTIONS                                                    
+  160       1.000e-002                                                      
+  161 C   CELL DIAMETERS                                                    
+  162       1.000e+000                                                      
+  163 C        MOLECULE  1                                                  
+  164           1                                                           
+  165 C    NODE    11                                                       
+  166         11    0    0    0    0  2.666667e+000  6.666667e-001  0.000000
+  167 C VOLFRACTV(N),DIAMSMEV(N),THICKSMEV(N),VOLSME,WALLAREAC,IPARTN,DPARTN
+  168          1.000000e-002  1.000000e-001  1.000000e-002  1.666667e+000  0
+  169 C   CELL FRACTIONS                                                    
+  170       1.000e-002                                                      
+  171 C   CELL DIAMETERS                                                    
+  172       1.000e+000                                                      
+  173 C        MOLECULE  1                                                  
+  174           1                                                           
+  175 C /8-2/ DATA FOR 2D ELEMENT GROUP (I5,5X,I5)                          
+  176 C NETIP,     NET,INDAX,IZIP,INDIFUSE,INDNSNE,ISMEAREDE (I5,I10,3I5)   
+  177     2         6    0    0    1                                        
+  178 C a) Card with data about 2D element GROUP                            
+  179 C MAT2DC,MAT2DD,NP2DMX,IPR2DC,IPTG2,NGAU2X,NGAU2Y,NTHIC,THIC (8I5,F10.
+  180     0    1    4    0    0    2    2    01.000e+000                    
+  181 C  NN,(NEL(NN,I),I=1,4),NMAT,NQQ,KORE,NBEG,IPRCO,IPGS,IPARTE,THI (5I10
+  182          1         1         5        10         7    1    0    0    0
+  183          2         2         6        10         5    1    0    0    0
+  184          3         3         7        10         6    1    0    0    0
+  185          4         3         8        11         7    1    0    0    0
+  186          5         4         9        11         8    1    0    0    0
+  187          6         1         7        11         9    1    0    0    0
+  188 C                                                                     
+  189 C  DATA ABOUT FICTITIOUS ELEMENTS                                     
+  190 C                                                                     
+  191 C  DATA ABOUT CAPILLARIES AND CELLS                                   
+  192 C MODCELL,NCAPILARY,NCELL,INTERCELL,NPMAXCAP,NPMAXCELL,ICELL2D3D,IWALL
+  193     1    0    0    0    0    0    2    0    0 1.00e+000    0          
+  194 C DATA FOR MATERIALS (NOT USED FOR 1d ELEMENTS)                       
+  195 C  maxPmatC, maxPmatD, maxPmatH (2I5)                                 
+  196     0    1    0                                                       
+  197 C MATNUMBD,MATPTD                                                     
+  198     1    1                                                            
+  199        0.000000e+000       1.000000e+001                              
+  200 C /14/ DATA ABOUT TIME FUNCTIONS (2I5)                                
+ ---- ----------------------------------------------------------------------
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+                            C O L U M N   N U M B E R
+
+
+
+1
+ A   C A R D   I M A G E   L I S T I N G   O F   T H E   I N P U T   D A T A
+                            C O L U M N   N U M B E R
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+ ---- ----------------------------------------------------------------------
+  201 C NTABFT,MAXTFT                                                       
+  202     1    2                                                            
+  203 C a) data about function in a table form (2I5)                        
+  204 C IBR,IMAX    (IMAX.LE.MAXTFT)                                        
+  205     1    2                                                            
+  206 C b) values for argument - function (2F10.0)                          
+  207 C ((FN(I,IBR,J),I=1,2),J=1,IMAX)                                      
+  208  0.00e+000 1.00e+000                                                  
+  209  1.00e+003 1.00e+000                                                  
+  210 C  PRESCRIBED VALUES                                                  
+  211 C   N,IDOF,NC,FAK,KORC (I10,2I5,F10.2,I5)                             
+  212          1    3    1 1.00e+000                                        
+  213          2    3    1 1.00e+000                                        
+  214          5    3    1 1.00e+000                                        
+  215          3    3    1 0.00e+000                                        
+  216          4    3    1 0.00e+000                                        
+  217          8    3    1 0.00e+000                                        
+  218 C  NPOC,NQP,MAXTQP,NHP,MAXTHP,NTOK,MAXTOK,NQE,MAXTQE,NHR,MAXTHR (15I5)
+  219     0    0    0    0    0    0    0    0    0    0    0               
+  220 C    INTIAL CONCENTRATIONS FOR MULTIMODEL OR COMPOSITE TISSUE         
+  221 C    FLAGS FOR PIPE-EX. CELL SPACE AND CELS  AND INTIAL CONCENTRATIONS
+  222   0  0  0  0  0  0  0  0  0  0  0  0                                  
+  223 1.000e+0001.000e+0001.000e+000                                        
+  224 C /16/ FINAL CARD (A4)                                                
+  225 STOP                                                                  
+ ---- ----------------------------------------------------------------------
+ CARD          1         2         3         4         5         6         7
+ NUMB 1234567890123456789012345678901234567890123456789012345678901234567890
+                            C O L U M N   N U M B E R
+
+
+ ******************* E N D   O F   I N P U T   L I S T I N G ***************
+
+
+
+1
+ CARD NUMBER    3
+
+
+
+ ******************************************************************************
+
+  COMPOSITE SMEARED FINITE ELEMENT MODEL - KOJIC TRANSPORT MODEL (KTM)           
+
+ ******************************************************************************
+
+
+
+
+
+
+ CARD NUMBER    3
+
+
+
+           FORMAT INDICATOR .............................. INDFOR =    2
+                EQ.0; INDFOR = 1
+                EQ.1; FREE FORMAT
+                EQ.2; FIXED FORMAT, AS DESCRIBED
+           INDICATOR FOR NDS DEVICE MODELING..............    NDS =    0
+                EQ.1; MODELING NDS DEVICE
+                EQ.0; NO NDS DEVICE MODELING
+           INDICATOR FOR NANOCHANNEL MODELING............ NANOCH =    0
+                EQ.1; MODELING NANOCHANNEL WITHOUT RESERVOIRS
+                EQ.2; MODELING NANOCHANNEL WITH LEFT RESERVOIR
+                EQ.3; MODELING NANOCHANNEL WITH LEFT AND RIGHT RESERVOIRS
+                EQ.0; NO NANOCHANNEL MODELING
+
+
+
+
+
+
+ CARD NUMBER    8
+
+
+
+      B A S I C    D A T A    F O R   T H E   P R O B L E M
+      -----------------------------------------------------
+
+
+           TOTAL NUMBER OF NODAL POINTS ...................... NP =   11
+                EQ.0; PROGRAM STOP
+
+
+           NUMBER OF ELEMENT GROUPS ........................ NGET =    1
+                EQ.0; DEFAULT SET "1"
+
+
+           NUMBER OF DIFERENT MATERIALS FOR CONVECTION..NMATTCONV=    0
+           NUMBER OF DIFERENT MATERIALS FOR DIFFUSION....NMATTDIF=    1
+           NUMBER OF DIFERENT MATERIALS FOR HEAT TRAN...NMATTHEAT=    0
+                EQ.0; NO MATERIAL FOR EITHER CONVECTION,DIFFUSION, OR HEAT TRANSFER
+
+
+            INDICATOR FOR STEADY FLOW...................... NSTAC =    1
+                EQ.0; STEADY STATE
+                EQ.1; TRANSIENT
+
+
+           NUMBER OF CONSTANT TIME STEP PERIODS ............ NPER =    1
+                EQ.0; DEFAULT SET "1"; (MAX. 16 PERIODS)
+
+
+           OUTPUT PRINTING INTERVAL IN OUTPUT FILE........ NPRINT =   -1
+                EQ.0; DEFAULT SET "1"
+                EQ.-1; RESULTS NOT PRINTED
+                EQ.1; EACH STEP PRINTED
+                GT.1; STEP NUMBER TO BE PRINTED
+                          E.G. EQ.3 - EACH THIRD STEP PRINTED           NUMBER OF FICTITIOUS ELEMENTS GROUPS...... NFICTGROUPS =
+
+
+           ANISOTROPIC FLAG ............................... IANIZ =    0
+                EQ.0; ISOTROPIC MATERIJAL
+                EQ.1; ANISOTROPIC MATERIJAL
+
+
+           KIND OF PRINTOUT OF THE INPUT DATA ............. NULAZ =    1
+                EQ.0; NULAZ = 1
+                EQ.1; CARD IMAGE, INPUT DATA READ AND GENERATED ARE PRINTED
+                EQ.2; CARD IMAGE PRINTED
+                EQ.3; INPUT DATA READ AND GENERATED ARE  PRINTED
+
+
+           INDICATOR FOR SOLVING    ANALOG PROBLEMS .... ITOR =    0
+                EQ.0; NOT SOLVING
+                EQ.1; SOLVING TORSIONAL RIGIDITY OF A SQUARE SHAFT
+                      ANALOGOUS:     TEMPERATURE  - TORSION
+                                HEAT GENERATION   = TORSION ANGLE
+                                CONDUCTIVITY      = .5/SHEAR MODUL
+                EQ.2;
+                EQ.3; SOLVING POTENTIAL FLOW
+
+
+           INDICATOR FOR GRAPHICS FILE .................... IGRAF =    1
+                EQ. 0; DEFAULT SET "1"
+                EQ.-1; NOT FORMED
+                EQ.1; EACH STEP WRITTEN IN GRAPHICS FILE
+                GT.1; STEP NUMBER TO BE WRITTEN IN GRAPHICS FILE
+                          E.G. EQ.3 - EACH THIRD STEP WRITTEN
+           FLAG FOR DARCY FLOW CALCULATION.............IDARCY  =    1
+                EQ.0, CASE NOT USED IN THIS CODE, RESET TO 1
+                EQ. 1, DARCY FLOW CALCULATION
+                EQ.-1, EQUIVALENT DARCY COEFFICIENT
+                EQ.-2, EQUIVALENT DIFFUSION COEFFCIENT CALCULATION
+           FLAG FOR CONVECT(1-D) FLOW CALCULAT (0-NO,1-YES)ICONV =    0
+           FLAG FOR DIFFUSION (0-NO, 1-YES).............indiffus =    1
+           FLAG FOR INERTIAL FLUID FORCES 1-D (0-NO,1-YES)IDINF=    0
+           FLAG FOR SOLVER (0-SKYLINE; 1-SPARCE MATRIX, MUMPS)ISOLVER=    1
+           FLAG FOR HEAT (0-NO HEAT, 1-HEAT PROBLEM)..... IHEAT=    0
+           FLAG FOR PIPE MIXED FORMULATION(0-NO, 1-YES).. IPIPEMIX=    0
+           FLAG FOR USE LAGRANGE MULTIPLIERS FOR MIXED FORMULATION, ILAMDA=    0
+
+
+           FLAG FOR SMEARED CAPILLARY MODEL ........     ISMEARED =    5
+                ISMEARED =0  NO SMEARED IS USED
+                          1  DIFF ONLY UNIFORM CONC IN CAPILLARIES
+                          2  CONVECTION ONLY IN CAPILLARIES 
+                          3  DIFFUSSION ONLY IN CAPILLARIES (WITH OR WITHOUT CONVECTION, ICONV=1 OR 0)
+                          4  CONVECTION ONLY COUPLED WITH TISSUE 
+                          5  DIFFUSION COUPLED WITH TISSUE (WITH OR WITHOUT CONVECTION, ICONV=1 OR 0)
+           DIMENSION OF IDT(NDIMIDG,NPT) SET IN PAK00..  NDIMIDG  =    4
+                    PARTITION OF CAPILL WALL (ISMEARED=1)IPARTSME =    0
+                    PARTITIONING IN CONTINUUM...........    IPART =    0
+                    VOLUMETRIC SOURCE................... IVSOURCE =    0
+                    SURFACE-VOLUME RATIO INDICATOR...... IRAVSME  =    0
+                IRAVSME = 0  USE EQUATION FOR STRAIGHT PIPE
+                          1  USE PRE-CALCULATED VALUE FOR COMPLEX PIPES
+                    SURFACE-VOLUME RATIO VALUE ......... DRAVSME  = 1.000D+00
+           FLAG FOR PRINTOUT VELOCITIES (0-N0,1-YES)..  IPRINTVEL =    0
+           2D-3D FLAG (0-RESET TO 2)  2-2D, 3-3D PROBLEM    I2D3D =    2
+           ANISOTROPY FLAG FOR ISMEARED.GE.2 ............. IANIZS =    0
+                0-ISOTR,1-DIAGONALLY ANSIOTR, 2-FULL SYMMETRIC TENSOR
+                IT IS SET IN THIS VERSION OF THE CODE THAT IANIZS=1
+           MULTICOMPONENTS OF TISSUE (0-HOMOGENOUS)......MULTITIS =    1
+           NUMBER OF TRANSPORTED MOLECULES (0-SET TO 1)..MULTIMOL =    1
+           NUMBER OF CELL TYPES............(0-NO CELLS)..NDIMCELL =    1
+           CELL INTERIOR MODELING  (0-NO, 1-YES)....... INDCELLIN =    0
+           LYMPHATIC HYDRAULIC TRANSPORT(0-NO, 1-YES).. INDLYMPHH =    0
+           LYMPHATIC DIFFUSIVE TRANSPORT(0-NO, 1-YES).. INDLYMPHC =    0
+
+
+
+
+
+
+ CARD NUMBER    11
+
+
+
+           TIME INTEGRATION METHOD USED ................... INTEB =    1
+                EQ.0; DEFAULT SET "1"
+                EQ.1; EULER BACKWARD INTEGRATION (ALPHA = 1)
+
+
+           PRINT OF RESULTS IN PRESCRIBED NODES ........... INDSC =    0
+                EQ.0; IN ALL NODES
+                EQ.1; IN PRESCRIBED NODES
+
+
+           PRINT OF RESULTS IN PRESCRIBED FORMAT .......... IFORM =    0
+                EQ.0; IN FORMAT  D13.5
+                EQ.1; IN FORMAT  F10.3
+
+
+           MAXIMUM NUMBER OF ITERATIONS ................... MAXIT =   30
+                EQ.0; DEFAULT SET "15"
+
+
+           APSOLUTE ACCURACY AT ITERATIONS ......... EPSTA = 0.000D+00
+
+
+           RELATIVE ACCURACY AT ITERATIONS ........ EPSTR = 5.000D-02
+                EQ.0; DEFAULT SET "1.E-3"
+
+
+           RELATIVE ACCURACY FOR LAGRANGE MULTIPL.. EPSTRL= 1.000D-03
+                EQ.0; DEFAULT SET "1.E-3"
+
+
+           ITERATION METHODS EMPLOYED ..................... NJRAP =    2
+                EQ.0; DEFAULT SET "1"
+                EQ.1; MODIFIED NEWTON
+                EQ.2; FULL NEWTON
+           DISJOINT CALCULATION FOR PRESSURE AND CONC . IDISJCALC =    0
+           STEP OF PRINTOUT FOR DISJOINT CALCULATION ..... IGRAFS =    1
+           NUMBER OF TIME PERIODS FOR DISJOINT CALC ....... NPERS =    0
+           PIPES IMMERSED IN TISSUE (IMM. GAUSS POINTS) nIndGauss =    0
+           TISSUE MEAN CONCENTRATION CALCULATION ..... nConcDiags =    0
+
+
+
+
+
+
+ CARD NUMBER    14
+
+
+
+           INDICATOR FOR JOB EXECUTION .................... IREST =    1
+                EQ.0; CHECK OF INPUT DATA
+                EQ.1; JOB EXECUTION
+                EQ.2; RESTART
+
+
+           NUMBER OF LAST WRITE STEP ....................... NCZK =    0
+                EQ.0; WRITE ALL STEPS
+
+
+           NUMBER OF PREWRITED LAST STEPS ON THE DISK....... NCZR =    0
+                AT RESTART MUST BE EQUAL "NCZK" FROM EARLIER SOLVING
+
+
+           TIME OF START JOB EXECUTION ............... VREM0 = 0.000D+00
+                GT.0; FOR RESTART
+
+
+
+
+
+
+ CARD FROM NUMBER    17 TO   18
+
+
+
+      D A T A   F O R   T I M E   S T E P S
+      -------------------------------------
+
+
+            SOLUTION PERIOD        NUM. OF TIME STEPS         TIME STEP
+                    1                   2          0.1000E+01
+            ------------------------------------------------------------
+            TOTAL NUMBER OF TIME STEPS    NDT =         2    TOTAL TIME = 0.20000E+01
+
+ BASIC D A T A  M A T R I C E S FOR MATERIAL PARAMETERS
+ IND = 0   MATERIAL PARAMETER NOT USED
+ IND = 1   MATERIAL PARAMETER IS INDEPENDENT OF NODES AND IS CONSTANT
+     = 2                         INDEPENDENT OF NODESAND DEPENDENT ON CONCENTRATION (FUNCTIONMAT)
+     = 3                         GIVEN FOR EACH NODE, READ HERE BUT NOT USED
+       CONVECTION DATA - NOW ONE MODEL ONLY MM=1:
+       ICMTABLE(1)   - DARCY COEFF FOR TISSUE
+               (2)     VISCOSITY COEF FOR PIPE
+               (3)     VISCOSITY COEF FOR CAPILL
+               (4)     HYDRAULIC COEF FOR PIPE
+               (5)     HYDRAULIC COEF FOR CAPILL
+               (6)     DARCY TENSOR
+---------------  THESE TABLES ARE SKIPPED --------------- 
+       DIFFUSION DATA:
+       IDMTABLE(MM,1)- DIFF COEFF WITHIN PIPE AND EXTRAC SPACE
+               (MM,2)- DIFF COEFF WITHIN CAPILLARIES
+               (MM,3)- DIFF COEFF WITHIN CELLS
+               (MM,4)- PARTITIONING
+               (MM,5)- ACTIVE TRANSPORT
+               (MM,6)- SOURCE TERMS
+               (MM,7)- ADHESION
+       IWMTABLE(MM,1)- WALL DIFF COEFICIENT FOR PIPE
+               (MM,2)-                          CAPILLARY
+               (MM,3)-                          CELLS 1
+               (MM,4)-                          CELLS 2
+                ---------------------------------------
+                ---------------------------------------
+               (MM,12)-                         CELLS 10
+ ------------------------------------------------------------
+    CAPILLARY DIAMETERS DIACAPX,DIACAPY,DIACAPZ - NOT USED IF ICMTABLE(6).EQ.3
+   0.100D+01   0.100D+01   0.100D+01
+
+ DATA ABOUT CELL M I G R A T I O N
+            IMIGTABLE(I)                           VELOCITIES
+    0-N0, 1-CONSTANT FOR NODES, 2-TIME FUNCTION 3-NODAL VALUE  LT.0-MOLECULE GRADIENT DRIVEN
+       0  0  0  0  0  0  0  0  0  0                1.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+ FLAGS FOR CHEMOTAXIS (0-NO)
+ FLAG  MOLEC FOR CELL 1   MOLEC FOR CELL 2 ...
+    0           0
+ DIFFUSION CONSTANTS INDEPENDENT OF CONCENTRATIONS AND NODES
+   NOTE: ALL CONSTANTS ARE READ, BUT USED OLNY IF FLAG IS NOT EQAUL TO 3 (ASSIGED TO NODES FOR FLAG EQUALS 3)
+ MOLECULE NUMBER    1
+   PIPE AND EXTRAC SPACE(FLAGS AND VALUES)  1  1               0.100D+03   0.100D+03
+   DIFFUSION COEFFICIENTS IN CAPILLARIES X,Y,Z:                        1                  0.100D+03   0.100D+03   0.000D+00
+   CELLS: MAX 1-10    1  0  0  0  0  0  0  0  0  0          100.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+ PARTIT COEFFICENT: PIPE,CAPILL,CELLS(1-10).. FALGS/VALUES
+    0    0    0    0    0    0    0    0    0    0    0    0
+                                1.00      1.00      1.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+ ACTIVE TRANSPORT CELL COEFFICIENTS -  IN:  0  0  0  0  0  0  0  0  0  0          1.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+                                    - OUT:                    1.00
+ SOURCE TERMS FOR CELLS: CELLS(1-NDIMCELL)     0  0  0  0  0  0  0  0  0  0       1.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+ ADHESION CEFFIC-PIPE,CAPILL, CELLS(1-10) :
+  0  0  0  0  0  0  0  0  0  0  0  0      1.00      1.00      1.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+ DE-ADHISION ..  :                        1.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+ WALL DIFF COEFF - PIPE,CAPILL,CELLS(1-10):
+  0  1  1  0  0  0  0  0  0  0  0  0    100.00  10000.00    100.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+
+ CRITICAL VALUES FOR CELLS: HEALTHY,CANCER,NECROTIC,IMMUNE
+ MOLECULE NUMBER FLAGS FOR CRITICAL VALUES             CRITICAL VALUES FOR CELLS
+    1       0  0  0  0  0  0  0  0  0  0      1.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+
+ MOLECULAR WEIGHTS
+ MOLECULE NO  WEIGHT       MOLECULE NO  WEIGHT....
+    1         0.100E+01
+
+
+      I N P U T   N O D A L   D A T A
+      -------------------------------
+      NOTE: LINES FOR MATERIAL DATA ARE NOT INPUT WHEN THE FLAG IN MATERIAL TABLE IS NOT EQUAL TO 3
+ LINE NO
+   1 NODE    INDICATOR FOR PRESCR VALUES 1-4    C O O R D I N A T E S     PIPE FLAG   ADDIT CONC MULTIMODEL INPUT ALWAYS
+             1,2-pressures; 3,4-conc        X            Y            Z
+             1 - prescribed;  -1 - prescrib velocity (+ outward normal)
+   2      CAPIL VOL FRACT  CAPIL DIAM  CAP WALL THICK  NODAL VOLUME    NODAL AREA                           INPUT ALWAYS
+   3      DARCY C-TISS  VISCOS-PIPE    VISCOS-CAP  H COEFF-PIPE    H COEFF-CPAILL                 INPUT FOR ICONV.EQ.1
+   4      DARCY TENSOR (MAX 6 COMPONENTS)                                                         INCONV.EQ.1.AND.ICMTABLE(6).EQ.3
+   5                        VOLUMETRIC FRACTIONS(1-NDIMCELL) AND CELL DIAMETERS (1-NDIMCELL)      INPUT FOR COMPOSITE TISSUE
+ NOTE: ALL DIFFUSION MATERIAL PARAMETERS ARE INDEPENDENT OF NODES
+       GIVEN AS CONSTANT OR CONCENTRATION DEPENDENT AND ARE NOT INPUT AT NODAL POINTS
+    ---DIFFUSION DATA: INPUT WHEN                                                                 INDIFFUS.EQ.1.AND.IREADDIFNODE.EQ.1
+   6    MOLECULE NO
+                            DIFF COEFF PIPE AND EXTRACELL       DIFFUSION TENSOR                  INPUT WHEN INDIFFUS.EQ.1
+   7                        DIFF COEFFICENTS WITHIN CELLS                                         INPUT WHEN NDIMCELLMAX.GT.0
+   8-11         INDICATORS  COEFFICIENTS:PARTIT/ACTIVE/SOURCE/ADHESION
+   12           DWALL PIPE  DWALLCAP   DIFF COEFFTS WALL CELL MEMRANES                            INPUT WHEN FLAG=3 FOR ANY WALL
+
+         1        1    1    1    0         0.000000E+00   0.200000E+01   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.155556E+01   0.622222E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         2        1    1    1    0         0.000000E+00  -0.200000E+01   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.777778E+00   0.311111E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         3        1    1    1    0         0.400000E+01  -0.200000E+01   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.155556E+01   0.622222E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         4        1    1    1    0         0.400000E+01   0.200000E+01   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.777778E+00   0.311111E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         5        1    1    1    0         0.000000E+00   0.000000E+00   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.133333E+01   0.533333E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         6        1    1    0    0         0.200000E+01  -0.200000E+01   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.133333E+01   0.533333E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         7        1    1    0    0         0.200000E+01   0.000000E+00   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.266667E+01   0.106667E+01
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         8        1    1    1    0         0.400000E+01   0.000000E+00   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.133333E+01   0.533333E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+         9        1    1    0    0         0.200000E+01   0.200000E+01   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.133333E+01   0.533333E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+        10        1    1    0    0         0.133333E+01  -0.666667E+00   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.166667E+01   0.666667E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+        11        1    1    0    0         0.266667E+01   0.666667E+00   0.000000E+00    0
+         0.100000E-01   0.100000E+00   0.100000E-01   0.166667E+01   0.666667E+00
+         0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00   0.000000E+00
+                        0.0100    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+                        1.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+           1   0  0  0  0  0  0  0  0  0  0
+
+
+      G E N E R A T E D   N O D A L   D A T A
+      ---------------------------------------
+
+                 NODE                             EQUATION NUMBERS                            C O O R D I N A T E S
+                                           PRESSURES        CONCENTRATIONS            X                Y                Z
+                                      CAPILLAR  TISSUE CAPILLAR TISSUE(EX CELL SPACE)
+                    1                     0         0         0         1        0.000000E+00      0.200000E+01      0.000000E+00
+                    2                     0         0         0         3        0.000000E+00     -0.200000E+01      0.000000E+00
+                    3                     0         0         0         5        0.400000E+01     -0.200000E+01      0.000000E+00
+                    4                     0         0         0         7        0.400000E+01      0.200000E+01      0.000000E+00
+                    5                     0         0         0         9        0.000000E+00      0.000000E+00      0.000000E+00
+                    6                     0         0        11        12        0.200000E+01     -0.200000E+01      0.000000E+00
+                    7                     0         0        14        15        0.200000E+01      0.000000E+00      0.000000E+00
+                    8                     0         0         0        17        0.400000E+01      0.000000E+00      0.000000E+00
+                    9                     0         0        19        20        0.200000E+01      0.200000E+01      0.000000E+00
+                   10                     0         0        22        23        0.133333E+01     -0.666667E+00      0.000000E+00
+                   11                     0         0        25        26        0.266667E+01      0.666667E+00      0.000000E+00
+
+       EQUATIONS FOR DIFFUSION WITHIN COMPOSITE TISSUE
+      MULECULE NUMBER
+                NODE                    C E L L S ....  1-10MAX
+
+      M O L E C U L E NUMBER.....    1
+                    1           2
+                    2           4
+                    3           6
+                    4           8
+                    5          10
+                    6          13
+                    7          16
+                    8          18
+                    9          21
+                   10          24
+                   11          27
+
+
+
+1
+      I N P U T    D A T A    F O R    E L E M E N T  G R O U P S
+      -----------------------------------------------------------
+
+
+
+
+
+
+ CARD NUMBER   177
+
+
+
+
+ E L E M E N T  G R O U P  N U M B E R         1
+           ELEMENT TYPE FOR GROUP      1 .................. NETIP =    2
+                EQ.1; ISOPARAMETRIC 1D ELEMENT 
+                EQ.2; ISOPARAMETRIC 2D ELEMENT IN PLANE X-Y
+                EQ.3; ISOPARAMETRIC 3D ELEMENT
+
+
+           NUMBER OF ELEMENTS IN THE GROUP      1 ........... NET =    6
+                GT.0; 
+
+
+           INDICATOR FOR AXISYMETRIC ELEMENTS  ............ INDAX =    0
+                (READING ONLY FOR  2D ELEMENATS)
+                EQ.0; 2/D IN PLANE
+                EQ.1; AXISYMETRIC 
+
+
+           INDICATOR FOR VOLUME. SOURCE ...... ............. IZIP =    0
+                EQ.0; THERE IS NOT VOLUMETRIC SOURCE
+                EQ.1; VOL SOURCES ARE FUNCTION OF TIME
+                EQ.2; VOL SOURCES ARE FUNCTION OF CONCENTRATION
+           FLAG FOR DIFFUSION WITHIN THE ELEM GROUP...... IDIFUSE =    1
+                0-NO DIFFUSION, 1- DIFFUSION IS PRESENT
+           IF GLOBALA PARAMETER INDIFFUS=0,IDIFUSE IS SET TO ZERO!
+
+
+
+
+
+
+ CARD NUMBER   180
+
+
+
+      INPUT DATA FOR ISOPARAMETRIC 2/D ELEMENTS
+      -----------------------------------------
+
+
+           MATERIAL NUMBER FOR CONVECTION .. ......... MAT2DCONV =    0
+           MATERIAL NUMBER FOR DIFFUSION .......       MAT2DdIF   =    1
+           IN CASE OF HEAT TRANSFER, MAT2DdIF IS USED
+                EQ.0 - NO DIFFUSION OR HEAT TRASFER FOR ELEMENT GROUP
+           MAXIMUM NUMBER OF NODAL POINTS PER ELEMENTS ... NP2DMX =    4
+                EQ.0; DEFAULT SET "4" (FOUR NODES PER ELEMENT)
+                GT.4; FOR ELEMENTS FROM 5 TO 9 NODES
+
+
+
+           INDICATOR FOR PRINTOUT  COORD. IN GAUSS POINTS  IPR2DC =    0
+                EQ.0; NOT PRINTED
+                EQ.1; PRINTED IN ALL ELEMENTS
+                EQ.2; PRINTED IN PRESRIBED ELEMENTS
+
+
+           INDICATOR FOR PRINTOUT TEMPER. IN GAUSS POINTS . IPTG2 =    0
+                EQ.0; NOT PRINTED
+                EQ.1; PRINTED IN ALL ELEMENTS
+                EQ.2; PRINTED IN PRESCRIBED ELEMENTS
+
+
+           NUMBER OF GAUSS POINTS IN DIRECTION KSI ....... NGAU2X =    2
+                EQ.0; POSTAJE "2"
+
+
+           NUMBER OF GAUSS POINTS IN DIRECTION ETA ....... NGAU2Y =    2
+                EQ.0; DEFAULT SET "2"
+
+
+           INDICATOR OF THICKNES .......................... NTHIC =    0
+                EQ.0; THICKNESS ARE CONSTANTS
+                EQ.1; THICKNESS ARE VARIABLES
+
+
+           THICKNESS .................................. THIC = 1.000D+00
+                (THIC.EQ.1; THICKNESS IGNORED)
+                EQ.0; THICKNESS OF ALL ELEMENTS IS ONE
+
+
+1
+
+
+      DATA FOR EACH 2/D ELEMENT
+      -------------------------
+
+
+      ELEM.         N    O    D    E    S        MAT.      SOURCE     IND FOR COORD. TEMP/CONC      THICK
+        NO                                                  NO.             G.P.      G.P.
+                     1     2     3     4
+         1           1     5    10     7          1          0               0         0            1.000
+         2           2     6    10     5          1          0               0         0            1.000
+         3           3     7    10     6          1          0               0         0            1.000
+         4           3     8    11     7          1          0               0         0            1.000
+         5           4     9    11     8          1          0               0         0            1.000
+         6           1     7    11     9          1          0               0         0            1.000
+
+      I N P U T  D A T A  F O R  C A P I L L A R I E S  A N D   C E L L S
+      -----------------------------------------------------------
+
+           TYPE OF THE CELL MODEL (1-2D AXIAL, 2-2D CIRCULAR, 3-3D).... MODCELL=    1
+           NUMBER OF CAPILLARIES........................ NCAPILARY=    0
+                IN CASE OF WALL MODEL USED (IWALL.EQ.1), THIS IS
+                NUMBER OF COLLAGEN SLEEVES
+           NUMBER OF CELLS.............................      NCELL=    0
+           MODELING OF CELLS INTERIOR (0-NO, 1-YES)..... INTRACELL=    0
+                IF INTRACELL.EQ.0 - NO MESH INSIDE ANY CELL
+           MAX NUMBER OF NODES FOR ANY CAPILLARY......... NPMAXCAP=    0
+           MAX NUMBER OF NODES FOR ANY CELL MEMBRANE.....NPMAXCELL=    0
+           FLAG FOR 2D-3D CELL (2-2D,3-3D)...............ICELL2D3D=    2
+           WALL MODELING FLAG (0-NO WALL MODEL, 1-YES)...... IWALL=    0
+           NO OF NODES WITH PRESCRIBED CONCENTRATION........ NZADW=    0
+                APPLICABLE WHEN WALL MODEL IS USED (IWALL=1)
+           MODEL THICKNESS...............................HMODEL=   0.100D+01
+           NO OF NODES WITH PRESCR OUT CONCENTRATION........ NZADO=    0
+
+
+
+
+
+
+ CARD NUMBER   196
+
+
+
+       BASIC DATA ABOUT MATERIAL PARAMETER TABLES:  DARCY AND DIFFUSION COEFFICIENTS
+       N O T  U S E D  F O R  1D  E L E M E N T S (EXCEPT FOR HEAT TRANSFER
+          (	DATA ARE GIVEN IN TABLE FORM )
+       ----------------------------------------------------------
+
+
+            TOTAL NUMBER OF TABLES FOR MATERIAL PARAMETERS....NMATT=    1
+           MAXIMUM NUMBER OF PAIRS for DARCY Coefficints,maxPmatC=    0
+           MAXIMUM NUMBER OF PAIRS "CONCENTRATION-DIFF COEFF" ...maxPmatD =    1
+           MAXIMUM NUMBER OF PAIRS "TEMPERATURE-RO,C,K" ...maxPmatH =    0
+
+ TABLE FOR DIFFUSION COEFFICIENTS
+
+ MATERIAL NUMBER                       1
+ NUMBER OF POINTS                      1
+     EQ.1 - CONSTANT DIFFUSION COEFFICIENT
+
+ CONCENTRATION       DIFFUSION COEFFICIENT
+   0.00000E+00              0.10000E+02
+
+
+
+1
+ CARD NUMBER   202
+
+
+
+      D A T A    F O R    T I M E    F U N C T I O N S
+      ------------------------------------------------
+
+
+           NUMBER OF DIFFERENT TIME FUNCTIONS ............ NTABFT =    1
+                EQ.0; THERE ARE NO TIME FUNCTIONS
+
+
+           MAX. NUM. OF POINTS FOR DEFINITION OF TIME FUN. MAXTFT =    2
+                EQ.0; THERE ARE NO TIME FUNCTIONS
+                EQ.1; TIME FUNCTIONS ARE CONSTANT
+                GT.1; TIME FUNCTIONS ARE VARIABLE
+
+
+
+
+
+
+      T I M E    F U N C T I O N S
+      ----------------------------
+
+
+           FUNCTION NO.=  1     NUMBER OF POINTS ON CURVE=  2
+
+           ARGUMENT      FUNCTION
+          0.0000E+00     0.1000E+01
+          0.1000E+04     0.1000E+01
+
+
+
+1
+      D A T A    F O R   P R E S C R I B E D    T E MP E R A T U R E S
+ C O N C E N T R A T I O N S      -----------------------------------------------------------------
+
+      I N P U T    D A T A
+           NODE  IDOF FUNCTION NO  PROP FACTOR
+              1    3      1        1.00000D+00
+              2    3      1        1.00000D+00
+              5    3      1        1.00000D+00
+              3    3      1        0.00000D+00
+              4    3      1        0.00000D+00
+              8    3      1        0.00000D+00
+
+
+
+
+
+
+ CARD NUMBER   219
+
+
+
+      INITIAL VELUES AND BOUNDARY CONDITIONS  --  GENERAL DATA:
+      -----------------------------------------------------
+
+
+           TOTAL NUMBER OF DIFERENT INITIAL CONCENTRATIONS.. NPOC =    0
+                EQ.0; LINEAR STEADY STATE
+                EQ.1; ALL INITIAL CONCENTRATIONS ARE THE SAME
+                GT.1 -INITIAL CONCENTRATIONS ARE GIVEN FOR EACH POINT
+
+
+           NUMBER OF DIFERENT CONCENTRATION FLUX FUNCTIONS .. NQP =    0
+                EQ.0; THERE IS NO SURFACE FLUX
+
+           MAX. NO. OF VALUES FOR SURFACE FLUX DEFINITION  MAXTQP =    0
+                EQ.0; THERE IS NO SURFACE FLUX
+                EQ.1; SURFACE FLUXES ARE CONSTANT
+                GT.1; SURFACE FLUXES ARE FUNCTION OF TIME
+
+
+
+1
+
+
+      DATA ABOUT DIMENSIONS OF SYSTEM MATRIX AND WORKING VECTOR
+      ---------------------------------------------------------
+
+
+           MAX NUMBER OF EQUATIONS .................. JEDNMAX =       27
+
+
+           NUMBER OF ELEMENTS INTO MATRIX OF SYSTEM ..... NWK =        0
+
+
+           REQUIRED DIMENSION INTO WORKING VECTOR ..... LMAXM =      404
+
+
+           MAXIMUM TOTAL STORAGE AVAILABLE ............. MTOT =120000000
+
+
+
+
+
+
+1
+
+
+      DATA ABOUT DIMENSIONS OF SYSTEM MATRIX AND WORKING VECTOR
+      ---------------------------------------------------------
+
+
+           MAX NUMBER OF EQUATIONS .................. JEDNMAX =       27
+
+
+           NUMBER OF ELEMENTS INTO MATRIX OF SYSTEM ..... NWK =        0
+
+
+           REQUIRED DIMENSION INTO WORKING VECTOR ..... LMAXM =      404
+
+
+           MAXIMUM TOTAL STORAGE AVAILABLE ............. MTOT =120000000
+
+
+
+
+      INITIAL CONCENTRATIONS FOR EXTRACEL SPACE AND CELLS
+      MOLEC FLAGS FOR PIPE-CAP-EX.CELL SPACE AND CELLS/  AND CONCENTRATIONS
+          1       0    0    0
+                  1.00      1.00      1.00
+
+      I N I T I A L  CONCENTRATIONS
+ MOLECULE MM     PIPE  EX.CELL SPACE AND CELLS
+        NODE     EQUATIONS     CONCENTRATIONS
+    1
+         1    0    0    0
+              0.0000    0.0000    0.0000
+         2    0    0    0
+              0.0000    0.0000    0.0000
+         3    0    0    0
+              0.0000    0.0000    0.0000
+         4    0    0    0
+              0.0000    0.0000    0.0000
+         5    0    0    0
+              0.0000    0.0000    0.0000
+         6    0    0    0
+              0.0000    0.0000    0.0000
+         7    0    0    0
+              0.0000    0.0000    0.0000
+         8    0    0    0
+              0.0000    0.0000    0.0000
+         9    0    0    0
+              0.0000    0.0000    0.0000
+        10    0    0    0
+              0.0000    0.0000    0.0000
+        11    0    0    0
+              0.0000    0.0000    0.0000
+
+ ITERATIONS FOR STEP:         1 /      2
+ ITERATION     IDOF     INCREMENT           NORM          ICR/NORM
+ IDOF=1 - PRESSURES; IDOF=2 - CONCENTRATIONS
+    0            2     3.0695D+00        3.0695D+00      1.0000D+00
+    1            2     1.9539D-14        3.0695D+00      6.3656D-15
+
+ UNBALANCED NORM.LT.ABS-TOLERANCE =   1.0000D-08
+
+ ITERATIONS FOR STEP:         2 /      2
+ ITERATION     IDOF     INCREMENT           NORM          ICR/NORM
+    0            2     3.8925D-02        3.0963D+00      1.2571D-02
+
+
+
+1
+
+
+      E X E C U T I O N    T I M I N G    I N F O RM A T I O N
+      ---------------------------------------------------------
+
+
+           TIME AT THE START OF READ OF INPUT DATA ........  0: 0: 0. 0
+
+           TIME AT THE START OF FORM OF MATRICES ..........  0: 0: 0. 0
+
+           END OF JOB  ....................................  0: 0: 0. 0
+
+
+
