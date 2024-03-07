@@ -1,10 +1,12 @@
 <h1 align="center"> PAK-KTM</h1>
 
 <p align="justify">
- PAK-KTM (Program for Structural Analysis - <strong>Kojic Transport Model</strong>) is high-performance software for finite element analysis (FEA), developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. 
-The program is written in FORTRAN 77/90/95 and is capable of solving diffusion and convection fields, enabling the modeling of mass transport of ions or molecules.
-The fundamental laws utilized include Fick's law of diffusion, from which the mass balance equation is derived and translated into a form applicable in the finite element method. 
-The model incorporates the assumption that the transport of molecules can be described by a nonlinear, non-stationary diffusion process.
+ PAK-KTM (Program for Structural Analysis - <strong>Kojic Transport Model</strong>) is a high-performance software for finite element analysis (FEA) of gradient-driven smeared physical fields, developed at the University of Kragujevac and the Research and Development Center for Bioengineering, BioIRC. The Kojic Transport Model is based on the composite smeared finite element (CSFE) and is used for modelling complex multiscale transport problems in the biological composite media. 
+The program is written in FORTRAN 77/90/95 and is capable of solving diffusion and convection fields, enabling the modelling of the mass transport of ions or molecules. Within CSFE, the detailed biochemical properties are included for the tissues as composite continuum media, as well as 1D structures and biological barriers at vessel walls and cell membranes.
+The fundamental laws utilized include Fick's law of diffusion, from which the mass balance equation is derived and translated into a form applicable to the finite element method. The model incorporates the assumption that the transport of molecules can be described by a nonlinear, non-stationary diffusion process.
+
+The methodology regarding the KTM model is summarized in the book:
+- M. Kojic, M. Milosevic, A. Ziemys, “Computational Models in Biomedical Engineering - Finite Element Models Based on Smeared Physical Fields: Theory, Solutions, and Software", Elsevier, 2022. [http://dx.doi.org/10.1016/j.cma.2015.06.002]
 </p>
 
 <p align="justify">
@@ -15,7 +17,7 @@ Modern medicine involves the application of the latest technologies for more eff
 </p>
 
 Another law employed is Darcy's law, which describes the transport of fluids in porous media through convection.
-When using this software, please cite following papers:
+When using this software, please cite the aforementioned book or the following papers:
 - M. Kojic, M. Milosevic, N. Kojic, Z. Starosolski, K. Ghaghada, R. Serda, A. Annapragada, M. Ferrari, and A. Ziemys, “A multi-scale FE model for convective–diffusive drug transport within tumor and large vascular networks,” Computer Methods in Applied Mechanics and Engineering, vol. 294. Elsevier BV, pp. 100–122, Sep-2015. [http://dx.doi.org/10.1016/j.cma.2015.06.002]
 
 - M. Kojic, M. Milosevic, N. Kojic, E. J. Koay, J. B. Fleming, M. Ferrari, and A. Ziemys, “Mass release curves as the constitutive curves for modeling diffusive transport within biological tissue,” Computers in Biology and Medicine, vol. 92. Elsevier BV, pp. 156–167, Jan-2018. [https://doi.org/10.1016/j.compbiomed.2016.06.026]
